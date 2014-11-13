@@ -1,0 +1,63 @@
+<DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<!-- RoadTrip - A Google Maps app to view landmarks between one destination and another.
+		Pull data for national landmarks from web service 
+		- find out which api i will use and what parameters I will pass it
+		- display raw data to the page.
+		- create an interface for the data
+		- connect the backend http requests to the new ui.
+		-->
+		<script src="https://apis.google.com/js/client.js?onload=OnLoadCallback"></script>
+
+		<script src="https://apis.google.com/js/api.js" type="text/javascript"></script>
+		
+		<!-- Loading the standalone auth client -->
+		
+		<script>
+
+		/*function loadXMLDoc()
+		{
+			var xmlhttp;
+			if (window.XMLHttpRequest)
+  			{
+  				xmlhttp=new XMLHttpRequest();
+  				var oauthToken = gapi.auth.getToken();
+
+  			}
+			else
+  			{
+  				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  			}
+			xmlhttp.onreadystatechange=function()
+  			{
+  				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    			{
+    				document.getElementById("showPlaces").innerHTML=xmlhttp.responseText;
+    			}
+  			}
+			xmlhttp.open("GET","https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&types=food&name=cruise&key=AIzaSyCYD7LFyaBvl9FhK32yjS-_aEJGWz4YN28", true);
+			xmlhttp.setRequestHeader("Authorization", "Bearer" + oauthToken.access_token);
+			xmlhttp.send();
+		}*/
+
+		function loadXMLDoc(){
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&types=food&name=cruise&key=AIzaSyCYD7LFyaBvl9FhK32yjS-_aEJGWz4YN28", true);
+			xhr.onreadystatechange = function() {
+  				if (xhr.readyState == 4) {
+    				// innerText does not let the attacker inject HTML elements.
+    				document.getElementById("showPlaces").innerText = xhr.responseText;
+  				}
+			}	
+			xhr.send();
+		}
+		</script>
+	</head>
+	
+	<body>
+	<button type="button" onclick="loadXMLDoc()">Show</button>
+	<div id="showPlaces"></div>
+	</body>
+</html>
