@@ -1,63 +1,81 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8"/>
-		<!-- RoadTrip - A Google Maps app to view landmarks between one destination and another.
-		Pull data for national landmarks from web service 
-		- find out which api i will use and what parameters I will pass it
-		- display raw data to the page.
-		- create an interface for the data
-		- connect the backend http requests to the new ui.
-		-->
-		<script src="https://apis.google.com/js/client.js?onload=OnLoadCallback"></script>
+  <head>
+    <meta charset="UTF-8">
+    <!---------- GRIDIRON GLORY ----------- 
 
-		<script src="https://apis.google.com/js/api.js" type="text/javascript"></script>
-		
-		<!-- Loading the standalone auth client -->
-		
-		<script>
+    This app allows users to view the top nfl video on YouTube based on the users input.
+  -->
 
-		/*function loadXMLDoc()
-		{
-			var xmlhttp;
-			if (window.XMLHttpRequest)
-  			{
-  				xmlhttp=new XMLHttpRequest();
-  				var oauthToken = gapi.auth.getToken();
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <script>
+      function appendResults(image, url){
 
-  			}
-			else
-  			{
-  				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  			}
-			xmlhttp.onreadystatechange=function()
-  			{
-  				if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    			{
-    				document.getElementById("showPlaces").innerHTML=xmlhttp.responseText;
-    			}
-  			}
-			xmlhttp.open("GET","https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&types=food&name=cruise&key=AIzaSyCYD7LFyaBvl9FhK32yjS-_aEJGWz4YN28", true);
-			xmlhttp.setRequestHeader("Authorization", "Bearer" + oauthToken.access_token);
-			xmlhttp.send();
-		}*/
+        var linebreak = document.createElement("br");
+        var results = document.getElementById('vidResults');
+         //Create a div for each result set. It will include the medium size thumbnail image and the title below it as the link to the video on YouTube.
 
-		function loadXMLDoc(){
-			var xhr = new XMLHttpRequest();
-			xhr.open("GET", "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&types=food&name=cruise&key=AIzaSyCYD7LFyaBvl9FhK32yjS-_aEJGWz4YN28", true);
-			xhr.onreadystatechange = function() {
-  				if (xhr.readyState == 4) {
-    				// innerText does not let the attacker inject HTML elements.
-    				document.getElementById("showPlaces").innerText = xhr.responseText;
-  				}
-			}	
-			xhr.send();
-		}
-		</script>
-	</head>
-	
-	<body>
-	<button type="button" onclick="loadXMLDoc()">Show</button>
-	<div id="showPlaces"></div>
-	</body>
+        //img tags
+        var i = document.createElement('img');
+        i.setAttribute('src', image);
+        results.appendChild(i);
+      }
+
+      //YouTube Search Requirements for general data display
+      function makeRequest(v) {
+
+        var video = document.getElementById('vidResults');
+        var t = document.createTextNode(v);
+        video.appendChild(t);
+        video.appendChild(document.createTextNode("testers"));
+        
+        var request = gapi.client.youtube.search.list({
+          'part': 'snippet',
+          'q': v,
+          'maxResults': 1
+        });
+     
+        
+
+        request.then(function(response) {
+          var searchTitle = response.result.items;
+          for(var i=0; i < searchTitle.length; i++){
+
+            //For each video returned in the search, return the video url and thumbnail url.
+            var imgLink = response.result.items[i].snippet.thumbnails.high.url;
+            var videoLink = response.result.items[i].id.videoId;
+            appendResults(imgLink, videoLink);
+          }
+         
+        }, function(reason) {
+          console.log('Error: ' + reason.result.error.message);
+        });
+      }
+
+      //set GoogleApi Key, and the YouTube Search data service
+      function init() {
+        gapi.client.setApiKey('AIzaSyBdGAsIfJXnGtkt2EIK49s5HddUtFtokD0');
+      }
+
+      function search(value){
+        gapi.client.load('youtube', 'v3').then(makeRequest(value));
+      }
+
+
+    </script>
+    <script src="https://apis.google.com/js/client.js?onload=init"></script>
+  </head>
+  <body>
+
+      <!-- User enters in the name of the team in the textbox. The text gets passed into search() -> makerequest(). Add a placeholder into makerequest().. i.e. 'top' + userrequest + 'plays'. -->
+      <form id= "searchBox">
+        <input name="searchValue" id="q" placeholder="Search NFL Teams">
+        <input type="submit" value="Search" name ="submit" onCLick="search(this.form.searchValue.value)">
+      </form>
+
+      <div id="vidResults"></div>
+      
+
+  </body>
 </html>

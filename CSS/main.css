@@ -1,0 +1,44 @@
+
+body{
+	
+	/*background-image: url("../img/fb-bg.jpg");
+	*/background-size: cover;
+	background-repeat: no-repeat;
+
+}
+
+
+/******* Create page sections *******/
+div{
+	/*border-style: solid;
+	border-width: 3px;*/
+}
+
+#results{
+	width: 100%;
+}
+
+/******* Create the section for the video *******/
+
+#vidResults{
+/*left video*/
+	border-color:red;
+	width: 400px;
+	position:relative;
+	top: 375px;
+	left:35%;
+
+}
+
+/******* Create Textbox to sit in the center of the page *******/
+#searchBox{
+	padding: 10px;
+	position: relative;
+	top:300px;
+	left:50%;
+}
+
+#q{
+	height: 30px;
+	width:225px;
+}
