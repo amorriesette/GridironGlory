@@ -17,21 +17,21 @@
         //img tags
         var i = document.createElement('img');
         i.setAttribute('src', image);
-        results.appendChild(i);
+        var rChildren = results.childNodes;
+        if(rChildren[0])
+          results.replaceChild(i, rChildren[0]);
+        else
+          results.appendChild(i);
       }
 
       //YouTube Search Requirements for general data display
       function makeRequest() {
 
-        /*var video = document.getElementById('vidResults');
-        var t = document.createTextNode(v);
-        video.appendChild(t);*/
-
         var team = document.getElementById("query").value;
 
         var request = gapi.client.youtube.search.list({
           part: 'snippet',
-          q: 'Texans',
+          q: team,
           maxResults: 1
         });
 
