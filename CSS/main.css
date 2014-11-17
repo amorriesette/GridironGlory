@@ -1,20 +1,28 @@
 
 body{
 	
-	background-image: url("../img/fb-bg.jpg");
+	background-image: url("../img/fb-bg2.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 
 }
 
 iframe{
-	width: 700px;
-	height: 400px;
+	width: 900px;
+	height: 470px;
 }
 /******* Create page sections *******/
 div{
 	/*border-style: solid;
 	border-width: 3px;*/
+}
+
+#heading{
+	width:60%;
+	height:40%;
+	position: relative;
+	top: -10px;
+	left: 20%;
 }
 
 #results{
@@ -28,8 +36,8 @@ div{
 	border-color:red;
 	width: 400px;
 	position:relative;
-	top: 375px;
-	left:46%;
+	top: 40px;
+	left:23%;
 
 }
 
@@ -37,8 +45,8 @@ div{
 #searchBox{
 	padding: 10px;
 	position: relative;
-	top:300px;
-	left:50%;
+	top:-40px;
+	left:35%;
 }
 
 #query{

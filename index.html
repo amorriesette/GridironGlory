@@ -21,7 +21,7 @@
       }
       //YouTube Search Requirements for general data display
       function makeRequest() {
-        var team = "top" + document.getElementById("query").value + "plays";
+        var team = document.getElementById("query").value + "highlights 2013";
         var request = gapi.client.youtube.search.list({
           part: 'snippet',
           q: team,
@@ -52,6 +52,7 @@
   <body>
 
       <!-- User enters in the name of the team in the textbox. The text gets passed into search() -> makerequest(). Add a placeholder into makerequest().. i.e. 'top' + userrequest + 'plays'. -->
+      <img id="heading" src="img/heading.png" />
       <form id= "searchBox">
         <input id="query" placeholder="Search NFL Teams" type="text" />
         <button id="search-button" onClick="init();return false;">Search</button>
