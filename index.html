@@ -10,19 +10,18 @@
     <script>
       function appendResults(image, url){
 
-        var linebreak = document.createElement("br");
         var results = document.getElementById('vidResults');
-         //Create a div for each result set. It will include the medium size thumbnail image and the title below it as the link to the video on YouTube.
+    
+        //frame tags
+        var iframe = document.createElement("iframe");
+        iframe.src="http://www.youtube.com/embed/" + url + "?autoplay=1";
 
-        //img tags
-        var i = document.createElement('img');
-        i.setAttribute('src', image);
+
         var rChildren = results.childNodes;
-
         if(rChildren[0])
-          results.replaceChild(i, rChildren[0]);
+          results.replaceChild(iframe, rChildren[0]);
         else
-          results.appendChild(i);
+          results.appendChild(iframe);
       }
 
       //YouTube Search Requirements for general data display
@@ -74,7 +73,9 @@
         <button id="search-button" onClick="init();return false;">Search</button>
       </form>
 
-      <div id="vidResults"></div>
+      <div id="vidResults">
+
+      </div>
 
 
   </body>

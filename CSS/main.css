@@ -1,13 +1,16 @@
 
 body{
 	
-	/*background-image: url("../img/fb-bg.jpg");
-	*/background-size: cover;
+	background-image: url("../img/fb-bg.jpg");
+	background-size: cover;
 	background-repeat: no-repeat;
 
 }
 
-
+iframe{
+	width: 700px;
+	height: 400px;
+}
 /******* Create page sections *******/
 div{
 	/*border-style: solid;
@@ -38,7 +41,9 @@ div{
 	left:50%;
 }
 
-#q{
-	height: 30px;
-	width:225px;
+#query{
+	height: 35px;
+	width:245px;
+	font-size: 14px;
 }
+
