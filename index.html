@@ -1,7 +1,6 @@
 <html>
   <head>
     <!---------- GRIDIRON GLORY -----------
-
     This app allows users to view the top nfl video on YouTube based on the users input.
   -->
 
@@ -9,58 +8,43 @@
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <script>
       function appendResults(image, url){
-
         var results = document.getElementById('vidResults');
     
         //frame tags
         var iframe = document.createElement("iframe");
         iframe.src="http://www.youtube.com/embed/" + url + "?autoplay=1";
-
-
         var rChildren = results.childNodes;
         if(rChildren[0])
           results.replaceChild(iframe, rChildren[0]);
         else
           results.appendChild(iframe);
       }
-
       //YouTube Search Requirements for general data display
       function makeRequest() {
-
-        var team = document.getElementById("query").value;
-
+        var team = "top" + document.getElementById("query").value + "plays";
         var request = gapi.client.youtube.search.list({
           part: 'snippet',
           q: team,
           maxResults: 1
         });
-
         request.then(function(response) {
           var searchTitle = response.result.items;
-
-
             //For each video returned in the search, return the video url and thumbnail url.
             var imgLink = response.result.items[0].snippet.thumbnails.high.url;
             var videoLink = response.result.items[0].id.videoId;
             appendResults(imgLink, videoLink);
-
-
         }, function(reason) {
           console.log('Error: ' + reason.result.error.message);
         });
       }
-
       //set GoogleApi Key, and the YouTube Search data service
       function init() {
         gapi.client.setApiKey('AIzaSyDSt0Km1lKX2unePlElPdtBFHafBkcMFHw');
         makeRequest();
       }
-
       function onLoad(){
         gapi.client.load('youtube','v3');
       }
-
-
     </script>
     <script src="https://apis.google.com/js/client.js?onload=onLoad"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
