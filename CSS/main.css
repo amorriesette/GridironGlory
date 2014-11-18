@@ -1,10 +1,8 @@
 
 body{
-	
 	background-image: url("../img/fb-bg2.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
-
 }
 
 iframe{
@@ -17,11 +15,11 @@ div{
 	border-width: 3px;*/
 }
 
-#heading{
+#header{
 	width:60%;
 	height:40%;
 	position: relative;
-	top: -10px;
+	top: 10px;
 	left: 20%;
 }
 
@@ -36,7 +34,7 @@ div{
 	border-color:red;
 	width: 400px;
 	position:relative;
-	top: 40px;
+	top: -20px;
 	left:23%;
 
 }
@@ -45,13 +43,11 @@ div{
 #searchBox{
 	padding: 10px;
 	position: relative;
-	top:-40px;
+	top:-70px;
 	left:35%;
 }
 
 #query{
-	height: 35px;
-	width:275px;
 	font-size: 14px;
 }
 

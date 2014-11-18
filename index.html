@@ -1,12 +1,19 @@
-<html>
-  <head>
-    <!---------- GRIDIRON GLORY -----------
-    This app allows users to view the top nfl video on YouTube based on the users input.
-  -->
+<!doctype html>
 
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title></title>
+    <meta name="description" content="">
+    <meta name="author" content="">
     <link rel="stylesheet" type="text/css" href="css/reset.css" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
-    <script>
+    
+
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script src="jquery.typeahead.js"></script>
+     <script>
       function appendResults(image, url){
         var results = document.getElementById('vidResults');
     
@@ -21,7 +28,7 @@
       }
       //YouTube Search Requirements for general data display
       function makeRequest() {
-        var team = document.getElementById("query").value + "highlights 2013";
+        var team = "top" + document.getElementById("query").value + "highlights for 2013";
         var request = gapi.client.youtube.search.list({
           part: 'snippet',
           q: team,
@@ -47,21 +54,86 @@
       }
     </script>
     <script src="https://apis.google.com/js/client.js?onload=onLoad"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-  </head>
-  <body>
+</head>
+<body>
 
-      <!-- User enters in the name of the team in the textbox. The text gets passed into search() -> makerequest(). Add a placeholder into makerequest().. i.e. 'top' + userrequest + 'plays'. -->
-      <img id="heading" src="img/heading.png" />
-      <form id= "searchBox">
-        <input id="query" placeholder="Search NFL Teams" type="text" />
-        <button id="search-button" onClick="init();return false;">Search</button>
-      </form>
+    <img id="header" src="img/heading.png" />
 
-      <div id="vidResults">
+    <form id="searchBox">
+        <div class="typeahead-container">
+            <div class="typeahead-field">
 
-      </div>
+                <span class="typeahead-query">
+                    <input id="query"
+                           name="query"
+                           type="search"
+                           placeholder="Search NFL Teams"
+                           autocomplete="off">
+                </span>
+                <span class="typeahead-button">
+                    <button type="submit" onClick="init();return false;">
+                        <i class="search-icon"></i>
+                    </button>
+                </span>
 
+            </div>
+        </div>
+    </form>
 
-  </body>
+    <div id="vidResults"></div>
+
+    <script>
+
+        var data = {
+            teams: ["Arizona Cardinals",
+                        "Atlanta Falcons",
+                        "Baltimore Ravens",
+                        "Buffalo Bills",
+                        "Carolina Panthers",
+                        "Chicago Bears",
+                        "Cincinnati Bengals",
+                        "Dallas Cowboys",
+                        "Denver Broncos",
+                        "Detroit Lions",
+                        "Green Bay Packers",
+                        "Houston Texans",
+                        "Indianapolis Colts",
+                        "Jacksonville Jaguars",
+                        "Kansas City Chiefs",
+                        "Miami Dolphins",
+                        "Minnesota Vikings",
+                        "New England Patriots",
+                        "New Orleans Saints",
+                        "NY Giants",
+                        "NY Jets",
+                        "Oakland Raiders",
+                        "Philadelphia Eagles",
+                        "Pittsburgh Steelers",
+                        "San Diego Chargers",
+                        "San Francisco 49ers",
+                        "Seattle Seahawks",
+                        "St. Louis Rams",
+                        "Tampa Bay Buccaneers",
+                        "Tennessee Titans",
+                        "Washington Redskins"]
+        };
+
+        $('#query').typeahead({
+            minLength: 1,
+            order: "asc",
+            group: true,
+            hint: true,
+            list: false,
+            backdrop: true,
+            source: {
+                team: {
+                    data: data.teams
+                }
+              
+            },
+            debug: true
+        });
+    </script>
+
+</body>
 </html>
