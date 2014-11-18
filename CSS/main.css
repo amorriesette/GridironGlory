@@ -1,5 +1,11 @@
 
+html{
+	height: 100%;
+}
+
 body{
+	width: 100%;
+	height: 100%;
 	background-image: url("../img/fb-bg2.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -54,7 +60,7 @@ div{
 	padding: 10px;
 	position: relative;
 	top:20px;
-	left:35%;
+	left:26%;
 }
 
 

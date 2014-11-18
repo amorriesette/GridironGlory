@@ -203,17 +203,17 @@ input {
 }
 
 .typeahead-result > ul > li.typeahead-group a {
-    background-color: #37a3eb;
-    background: -webkit-linear-gradient(top, #37a3eb 0, #2181cf 100%);
-    background: linear-gradient(to bottom, #37a3eb 0, #2181cf 100%);
+    background-color: #4E6C31;
+    background: -webkit-linear-gradient(top, #4E6C31 0, #83986F 100%);
+    background: linear-gradient(to bottom, #4E6C31 0, #83986F 100%);
 
     font-size: 13px;
     color: #fff;
     text-transform: uppercase;
     font-weight: bold;
-    text-shadow: 0 1px 0 rgba(0,0,0,0.75);
-    -moz-text-shadow: 0 1px 0 rgba(0,0,0,0.75);
-    -webkit-text-shadow: 0 1px 0 rgba(0,0,0,0.75);
+    text-shadow: 0 1px 0 rgba(0,0,0,0.25);
+    -moz-text-shadow: 0 1px 0 rgba(0,0,0,0.25);
+    -webkit-text-shadow: 0 1px 0 rgba(0,0,0,0.25);
 }
 
 .typeahead-result > ul > li > a small {
