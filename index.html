@@ -6,31 +6,39 @@
 
     <title></title>
     <meta name="description" content="">
-    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1">
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <meta name="author" content="">
     <link rel="stylesheet" type="text/css" href="css/reset.css" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel="stylesheet" href="css/jquery.typeahead.css">
 
     <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-    <script src="https://apis.google.com/js/client.js?onload=onLoad"></script>
     <script src="jquery.typeahead.js"></script>
 
-    <script>
-      function appendResults(image, url){
+
+
+     <script>
+      function appendResults(url){
         var results = document.getElementById('vidResults');
     
-        //frame tags
+        //Dynamically creates the iframe adds the video id to the YouTube url.
         var iframe = document.createElement("iframe");
         iframe.src="http://www.youtube.com/embed/" + url + "?autoplay=1";
+
+        //If the user types in a team after a video has been loaded, the next searched
+        //video will replace the old one. 
         var rChildren = results.childNodes;
         if(rChildren[0])
           results.replaceChild(iframe, rChildren[0]);
         else
           results.appendChild(iframe);
       }
-      //YouTube Search Requirements for general data display
+      
       function makeRequest() {
+      //Creates YouTube Search Requirements for all YouTube videos to be queried. All football teams that 
+      //are entered into the search text box are filtered by the highlights from 2013. i.e. Indianapolis Colts highlights 2013. 
+      //This query will only return one result that will get display as a video.
+
         var team = document.getElementById("query").value + "highlights 2013";
         var request = gapi.client.youtube.search.list({
           part: 'snippet',
@@ -39,14 +47,14 @@
         });
         request.then(function(response) {
           var searchTitle = response.result.items;
-            //For each video returned in the search, return the video url and thumbnail url.
-            var imgLink = response.result.items[0].snippet.thumbnails.high.url;
+            //Return the video url and thumbnail url.
             var videoLink = response.result.items[0].id.videoId;
-            appendResults(imgLink, videoLink);
+            appendResults(videoLink);
         }, function(reason) {
           console.log('Error: ' + reason.result.error.message);
         });
       }
+
       //set GoogleApi Key, and the YouTube Search data service
       function init() {
         gapi.client.setApiKey('AIzaSyDSt0Km1lKX2unePlElPdtBFHafBkcMFHw');
@@ -57,14 +65,15 @@
       }
     </script>
 
+    
+    <script src="https://apis.google.com/js/client.js?onload=onLoad"></script>
 </head>
 <body>
     
-    <a href="https://github.com/amorriesette"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
-    
+    <a href="https://github.com/amorriesette/GridironGlory"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+    <section>
     <img id="header" src="img/heading.png" />
-
-  <form>
+    <form>
         <div class="typeahead-container">
             <div class="typeahead-field">
 
@@ -83,14 +92,14 @@
 
             </div>
         </div>
-      </form>
-
+    </form>
+</section>
 
     <div id="vidResults"></div>
 
+    <!-- JSON data to load into typeahead -->
     <script>
-
-        var data = {
+      var data = {
             teama: [
                     "Baltimore Ravens",
                     "Buffalo Bills",

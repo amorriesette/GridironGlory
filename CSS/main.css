@@ -10,13 +10,24 @@ body{
 	background-image: url("../img/fb-bg2.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
+	overflow: hidden;
 }
 
-/******* Create page sections *******/
-div{
-	/*border-style: solid;
-	border-width: 3px;*/
+
+form{
+	position:absolute;
+	margin-left:30%;
+	margin-right:30%;
+	left:30px;
 }
+
+section{
+	position: relative;
+      top: 25%;
+      margin: 0 auto 0;
+      max-width: 1250px;
+}
+
 
 #header{
 	width:60%;
@@ -26,41 +37,19 @@ div{
 	left: 20%;
 }
 
-
-/******* Create the section for the video *******/
-
 #vidResults{
 
-	border-color:red;
-	width: 730px;
-	position:relative;
-	top: 100px;
-	left:30%;
-	height: 0;
-	padding-top: 25px;
-	padding-bottom: 25.25%
+	position: relative;
+	margin-left: 35%;
+	top: 120px;
 }
 
 #vidResults iframe{
-	position:absolute;
-	width:70%;
-	height: 70%;
+
+	width:500px;
+	height:300px;
 }
 
-/******* Create Textbox to sit in the center of the page *******/
-#searchBox{
-	padding: 10px;
-	position: relative;
-	top:20px;
-	left:26%;
-}
-
-form{
-	position:absolute;
-	margin-left:30%;
-	margin-right:30%;
-	left:30px;
-}
 
 
 
