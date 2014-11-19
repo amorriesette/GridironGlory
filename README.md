@@ -4,6 +4,8 @@ A web app created to view the 2013 highlights of all the NFL teams.
 
 Known Issues:
 - Alignment/ Responsiveness
+- Although there is a typeahead the user has the ability to look at other searches 
+    through the text box.
 
 
 Future Features:
