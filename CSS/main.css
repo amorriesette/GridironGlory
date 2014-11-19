@@ -1,7 +1,7 @@
 
 html{
 	height: 100%;
-	min-width: 700px;
+	min-width: 1200px;
 
 }
 
@@ -38,16 +38,25 @@ section{
 }
 
 #vidResults{
-
-	position: relative;
-	margin-left: 35%;
+ -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position:relative;
+    padding-top: 140px; 
+    left:37%;
+    top:40%;
+    width:800px;
+    height: 700px;
+	/*position: relative;
+	margin-left: 25%;
 	top: 120px;
+	width:100%;*/
 }
 
 #vidResults iframe{
 
-	width:500px;
-	height:300px;
+	width:50%;
+	height:50%;
 }
 
 
